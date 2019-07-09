@@ -44,15 +44,17 @@ hchart(all_me, "line", hcaes(x = Year, y = Total, group=Country)) %>%
   hc_title(text = paste("Yearly Measles Count in Canada and the United States of America"),
            margin = 20, align = "left",
            style = list(useHTML = TRUE)) %>%
-  hc_subtitle(text = "Years 2012 to 2019",
+  hc_subtitle(text = "Source: World Health Organization (WHO)",
               align = "left") %>%
+ 
   hc_tooltip(useHTML = TRUE,
             headerFormat = "<b>{point.key}</b>",
             pointFormatter = tooltip_chart(accesor = "ttdata",
                                            width="500",
-                                             hc_opts = list(xAxis = list(labels=list(style=list(color="white")), categories=list(list(categories= c('Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')))),
+                                             hc_opts = list(xAxis = list(title=list(text="Month"),
+                                                                    labels=list(style=list(color="white")), 
+                                                                    categories=list(list(categories= c('Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')))),
                                                             yAxis = list(labels=list(style=list(color="white")))
                                                             )
+                                          )
                                            )
-             )
-                
