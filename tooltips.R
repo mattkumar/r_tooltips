@@ -38,8 +38,10 @@ all_me <- left_join(totals, months, by = c("Country","Year"))
 
 #Plot it
 hchart(all_me, "line", hcaes(x = Year, y = Total, group=Country)) %>%
-  hc_xAxis(allowDecimals=FALSE) %>%
-  hc_title(text = paste("Yearly Measles Count for Canada and United States of America"),
+  hc_add_theme(hc_theme_538()) %>%
+  hc_xAxis(allowDecimals=FALSE, title=list(text="Year")) %>%
+  hc_yAxis(title=list(text="Counts")) %>%
+  hc_title(text = paste("Yearly Measles Count in Canada and the United States of America"),
            margin = 20, align = "left",
            style = list(useHTML = TRUE)) %>%
   hc_subtitle(text = "Years 2012 to 2019",
@@ -48,8 +50,9 @@ hchart(all_me, "line", hcaes(x = Year, y = Total, group=Country)) %>%
             headerFormat = "<b>{point.key}</b>",
             pointFormatter = tooltip_chart(accesor = "ttdata",
                                            width="500",
-                                             hc_opts = list(xAxis = list(categories=list(list(categories= c('Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')))) 
-                
-                                                             )
-                                             )      
+                                             hc_opts = list(xAxis = list(labels=list(style=list(color="white")), categories=list(list(categories= c('Jan', 'Feb', 'Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec')))),
+                                                            yAxis = list(labels=list(style=list(color="white")))
+                                                            )
+                                           )
              )
+                
